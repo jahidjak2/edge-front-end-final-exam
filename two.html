@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #007BFF;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="one.html">Problem 1</a> |
+        <a href="two.html">Problem 2</a> |
+        <a href="three.html">Problem 3</a> |
+        <a href="four.html">Problem 4</a> |
+        <a href="five.html">Problem 5</a> |
+        <a href="six.html">Problem 6</a> |
+        <a href="seven.html">Problem 7</a> |
+        <a href="eight.html">Problem 8</a> |
+        <a href="nine.html">Problem 9</a> |
+    </nav> 
+    <br><br>
+    <h1>Problem 2</h1>
+    <table id="data-table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <script>
+        const url = 'https://codeandcareer.com/assignments/api/api.php';
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('data-table');
+                data.forEach(item => {
+                    const row = table.insertRow();
+                    row.innerHTML = `
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.mobile}</td>
+                        <td>${item.email}</td>
+                        <td><button onclick="this.closest('tr').remove()">Delete</button></td>
+                    `;
+                });
+            })
+            .catch(error => console.error('Fetch error:', error));
+    </script>
+</body>
+</html>
